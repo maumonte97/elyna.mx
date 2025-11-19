@@ -1,14 +1,14 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Autocalls",
+  "name": "Elyna",
   "logo": {
-    "dark": "/resources/logo/dark.png",
-    "light": "/resources/logo/light.png"
+    "dark": "/resources/logo/Elyna-logo2.png",
+    "light": "/resources/logo/Elyna-logo2.png"
   },
-  "favicon": "/favicon.png",
+  "favicon": "/favicon1.png",
   "colors": {
-    "primary": "#06df4b",
-    "light": "#06df4b",
+    "primary": "#fe6809",
+    "light": "#fe6809",
     "dark": "#65fe50",
     "anchors": {
       "from": "#01df4a",
@@ -24,14 +24,14 @@
   },
   "topbarLinks": [{
     "name": "Home",
-    "url": "https://autocalls.ai"
+    "url": "https://elyna.mx"
   }, {
     "name": "Support",
-    "url": "https://autocalls.ai/contact"
+    "url": "https://elyna.mx/contact"
   }],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://app.autocalls.ai"
+    "url": "https://app.elyna.mx"
   },
   "anchors": [{
     "name": "No-Code Automation",
@@ -57,7 +57,7 @@
   "navigation": [{
       "group": "Introduction",
       "pages": [
-        "introduction/what-is-autocalls",
+        "introduction/what-is-elyna",
         "introduction/how-it-works",
         "introduction/key-terminology"
       ]
@@ -307,7 +307,7 @@
     {
       "group": "Calls Related",
       "pages": [
-        "automation-platform/calls-related/autocalls-tool",
+        "automation-platform/calls-related/elyna-tool",
         "automation-platform/calls-related/common-integrations",
         "automation-platform/calls-related/sms-capabilities"
       ]
@@ -335,7 +335,7 @@
     "linkedin": "https://www.linkedin.com/company/autocalls-ai"
   },
   "api": {
-    "baseUrl": "https://app.autocalls.ai/api/",
+    "baseUrl": "https://app.elyna.mx/api/",
     "auth": {
       "method": "bearer"
     }
