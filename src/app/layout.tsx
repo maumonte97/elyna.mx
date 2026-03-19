@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/i18n/LanguageContext";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -23,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${sora.variable} antialiased`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        {children}
       </body>
     </html>
   );

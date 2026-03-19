@@ -1,9 +1,9 @@
 "use client";
 
-import { useLanguage } from "./LanguageContext";
+import { useLocale } from "./LanguageContext";
 import { dictionaries, Dictionary } from "./dictionaries";
 
 export function useTranslation(): Dictionary {
-  const { locale } = useLanguage();
+  const locale = useLocale();
   return dictionaries[locale];
 }
