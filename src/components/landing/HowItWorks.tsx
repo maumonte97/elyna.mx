@@ -2,24 +2,27 @@
 
 import { motion } from "framer-motion";
 import { GearSix, Microphone, RocketLaunch } from "@phosphor-icons/react";
-
-const steps = [
-  { icon: GearSix, step: "01", title: "Configura tu asistente", description: "Define el prompt, selecciona la voz y conecta las herramientas que necesitas. Sin código requerido.", color: "var(--primary)" },
-  { icon: Microphone, step: "02", title: "Asigna un número", description: "Provisiona un número telefónico local o conecta tu propio trunk SIP. Disponible en múltiples países.", color: "var(--accent)" },
-  { icon: RocketLaunch, step: "03", title: "Lanza y escala", description: "Activa llamadas entrantes o lanza campañas salientes. Monitorea todo desde tu dashboard en tiempo real.", color: "var(--secondary)" },
-];
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function HowItWorks() {
+  const t = useTranslation();
+
+  const steps = [
+    { icon: GearSix, step: "01", title: t.howItWorks.s1.title, description: t.howItWorks.s1.description, color: "var(--primary)" },
+    { icon: Microphone, step: "02", title: t.howItWorks.s2.title, description: t.howItWorks.s2.description, color: "var(--accent)" },
+    { icon: RocketLaunch, step: "03", title: t.howItWorks.s3.title, description: t.howItWorks.s3.description, color: "var(--secondary)" },
+  ];
+
   return (
     <section className="py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">Cómo funciona</span>
+          <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">{t.howItWorks.tag}</span>
           <h2 className="text-3xl md:text-5xl font-bold mt-3 mb-4">
-            Listo en 30 minutos,{" "}
-            <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] bg-clip-text text-transparent">no en semanas</span>
+            {t.howItWorks.title1}
+            <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] bg-clip-text text-transparent">{t.howItWorks.titleHighlight}</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Tres pasos para transformar tu comunicación telefónica con IA.</p>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">{t.howItWorks.subtitle}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 relative">

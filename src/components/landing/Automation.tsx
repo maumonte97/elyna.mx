@@ -10,8 +10,32 @@ import {
   WebhooksLogo,
   ArrowDown,
 } from "@phosphor-icons/react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function Automation() {
+  const t = useTranslation();
+
+  const actions = [
+    {
+      icon: Database,
+      label: t.automation.action1.label,
+      desc: t.automation.action1.desc,
+      color: "var(--info)",
+    },
+    {
+      icon: EnvelopeSimple,
+      label: t.automation.action2.label,
+      desc: t.automation.action2.desc,
+      color: "var(--success)",
+    },
+    {
+      icon: WebhooksLogo,
+      label: t.automation.action3.label,
+      desc: t.automation.action3.desc,
+      color: "var(--secondary)",
+    },
+  ];
+
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -26,17 +50,16 @@ export default function Automation() {
           className="text-center mb-16"
         >
           <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">
-            Automatización
+            {t.automation.tag}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mt-3 mb-4">
-            Workflows que trabajan{" "}
+            {t.automation.title1}
             <span className="bg-gradient-to-r from-[var(--secondary)] to-[var(--accent)] bg-clip-text text-transparent">
-              por ti
+              {t.automation.titleHighlight}
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Construye flujos de automatización sin código. Conecta tus llamadas
-            con HubSpot, Google Sheets, email y más.
+            {t.automation.subtitle}
           </p>
         </motion.div>
 
@@ -54,11 +77,11 @@ export default function Automation() {
               </div>
               <div>
                 <p className="text-xs text-[var(--primary)] font-semibold uppercase tracking-wider">
-                  Trigger
+                  {t.automation.trigger}
                 </p>
-                <p className="text-sm font-medium">Cuando la llamada termina</p>
+                <p className="text-sm font-medium">{t.automation.triggerLabel}</p>
                 <p className="text-xs text-gray-500">
-                  Accede a la transcripción y metadatos
+                  {t.automation.triggerDesc}
                 </p>
               </div>
             </div>
@@ -73,13 +96,13 @@ export default function Automation() {
               </div>
               <div>
                 <p className="text-xs text-[var(--warning)] font-semibold uppercase tracking-wider">
-                  Condición
+                  {t.automation.condition}
                 </p>
                 <p className="text-sm font-medium">
-                  Si el cliente agendó una cita
+                  {t.automation.conditionLabel}
                 </p>
                 <p className="text-xs text-gray-500">
-                  Analiza la transcripción con IA
+                  {t.automation.conditionDesc}
                 </p>
               </div>
             </div>
@@ -89,26 +112,7 @@ export default function Automation() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-3">
-              {[
-                {
-                  icon: Database,
-                  label: "Actualizar HubSpot",
-                  desc: "Crear contacto + deal",
-                  color: "var(--info)",
-                },
-                {
-                  icon: EnvelopeSimple,
-                  label: "Enviar confirmación",
-                  desc: "Email con resumen",
-                  color: "var(--success)",
-                },
-                {
-                  icon: WebhooksLogo,
-                  label: "Webhook",
-                  desc: "Notificar al equipo",
-                  color: "var(--secondary)",
-                },
-              ].map((action) => (
+              {actions.map((action) => (
                 <div
                   key={action.label}
                   className="p-4 rounded-2xl bg-white/5 border border-white/5 text-center"
@@ -144,18 +148,17 @@ export default function Automation() {
               </div>
               <div className="flex-1">
                 <p className="text-xs text-[var(--accent)] font-semibold uppercase tracking-wider">
-                  Trigger alternativo
+                  {t.automation.altTrigger}
                 </p>
                 <p className="text-sm font-medium">
-                  Antes de que el asistente responda
+                  {t.automation.altTriggerLabel}
                 </p>
                 <p className="text-xs text-gray-500">
-                  Inyecta variables del CRM para personalizar la conversación en
-                  tiempo real
+                  {t.automation.altTriggerDesc}
                 </p>
               </div>
               <span className="text-xs px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)]">
-                Pre-llamada
+                {t.automation.preCall}
               </span>
             </div>
           </div>

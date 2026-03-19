@@ -2,18 +2,33 @@
 
 import { motion } from "framer-motion";
 import { Phone, GitBranch, EnvelopeSimple, Database, WebhooksLogo, Table } from "@phosphor-icons/react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function RecruitAutomation() {
+  const t = useTranslation();
+
+  const qualifiedActions = [
+    { icon: Database, label: t.recruit.automation.q1.label, detail: t.recruit.automation.q1.detail },
+    { icon: EnvelopeSimple, label: t.recruit.automation.q2.label, detail: t.recruit.automation.q2.detail },
+    { icon: WebhooksLogo, label: t.recruit.automation.q3.label, detail: t.recruit.automation.q3.detail },
+  ];
+
+  const notQualifiedActions = [
+    { icon: Table, label: t.recruit.automation.nq1.label, detail: t.recruit.automation.nq1.detail },
+    { icon: EnvelopeSimple, label: t.recruit.automation.nq2.label, detail: t.recruit.automation.nq2.detail },
+    { icon: Database, label: t.recruit.automation.nq3.label, detail: t.recruit.automation.nq3.detail },
+  ];
+
   return (
     <section className="py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">Automatización</span>
+          <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">{t.recruit.automation.tag}</span>
           <h2 className="text-3xl md:text-5xl font-bold mt-3 mb-4">
-            Post-entrevista en{" "}
-            <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">piloto automático</span>
+            {t.recruit.automation.title1}
+            <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">{t.recruit.automation.titleHighlight}</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Conecta el resultado de cada entrevista con tus herramientas de RRHH automáticamente.</p>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">{t.recruit.automation.subtitle}</p>
         </motion.div>
 
         {/* Workflow visual */}
@@ -25,8 +40,8 @@ export default function RecruitAutomation() {
               <div className="flex items-center gap-3 bg-[var(--primary)]/10 border border-[var(--primary)]/20 rounded-2xl px-5 py-3">
                 <Phone size={20} weight="duotone" className="text-[var(--primary)]" />
                 <div>
-                  <p className="text-sm font-semibold">Trigger: Entrevista finalizada</p>
-                  <p className="text-xs text-gray-500">Score, transcripción y datos extraídos disponibles</p>
+                  <p className="text-sm font-semibold">{t.recruit.automation.trigger}</p>
+                  <p className="text-xs text-gray-500">{t.recruit.automation.triggerDesc}</p>
                 </div>
               </div>
             </div>
@@ -41,8 +56,8 @@ export default function RecruitAutomation() {
               <div className="flex items-center gap-3 bg-[var(--accent)]/10 border border-[var(--accent)]/20 rounded-2xl px-5 py-3">
                 <GitBranch size={20} weight="duotone" className="text-[var(--accent)]" />
                 <div>
-                  <p className="text-sm font-semibold">Condición: ¿Score &gt; 70?</p>
-                  <p className="text-xs text-gray-500">Filtra candidatos calificados vs. descartados</p>
+                  <p className="text-sm font-semibold">{t.recruit.automation.condition}</p>
+                  <p className="text-xs text-gray-500">{t.recruit.automation.conditionDesc}</p>
                 </div>
               </div>
             </div>
@@ -62,12 +77,8 @@ export default function RecruitAutomation() {
             <div className="grid md:grid-cols-2 gap-6">
               {/* Qualified */}
               <div className="space-y-3">
-                <p className="text-center text-xs font-semibold text-[var(--success)] uppercase tracking-wider mb-4">Calificado</p>
-                {[
-                  { icon: Database, label: "Actualizar ATS/CRM", detail: "Mover candidato a etapa 'Entrevista RRHH'" },
-                  { icon: EnvelopeSimple, label: "Email al candidato", detail: "Confirmar siguiente paso del proceso" },
-                  { icon: WebhooksLogo, label: "Webhook a Slack", detail: "Notificar al reclutador asignado" },
-                ].map((action, i) => (
+                <p className="text-center text-xs font-semibold text-[var(--success)] uppercase tracking-wider mb-4">{t.recruit.automation.qualified}</p>
+                {qualifiedActions.map((action, i) => (
                   <div key={i} className="flex items-center gap-3 bg-[var(--success)]/5 border border-[var(--success)]/10 rounded-xl px-4 py-3">
                     <action.icon size={18} weight="duotone" className="text-[var(--success)] shrink-0" />
                     <div>
@@ -80,12 +91,8 @@ export default function RecruitAutomation() {
 
               {/* Not qualified */}
               <div className="space-y-3">
-                <p className="text-center text-xs font-semibold text-[var(--warning)] uppercase tracking-wider mb-4">No calificado</p>
-                {[
-                  { icon: Table, label: "Registrar en Google Sheets", detail: "Archivo de candidatos descartados con motivo" },
-                  { icon: EnvelopeSimple, label: "Email de agradecimiento", detail: "Notificar amablemente que no avanza" },
-                  { icon: Database, label: "Actualizar ATS", detail: "Marcar como 'No apto' con resumen IA" },
-                ].map((action, i) => (
+                <p className="text-center text-xs font-semibold text-[var(--warning)] uppercase tracking-wider mb-4">{t.recruit.automation.notQualified}</p>
+                {notQualifiedActions.map((action, i) => (
                   <div key={i} className="flex items-center gap-3 bg-[var(--warning)]/5 border border-[var(--warning)]/10 rounded-xl px-4 py-3">
                     <action.icon size={18} weight="duotone" className="text-[var(--warning)] shrink-0" />
                     <div>

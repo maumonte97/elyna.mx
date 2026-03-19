@@ -2,18 +2,21 @@
 
 import { motion } from "framer-motion";
 import { PhoneCall, Clock, Globe, Lightning } from "@phosphor-icons/react";
-
-const stats = [
-  { icon: PhoneCall, value: "10M+", label: "Llamadas procesadas", color: "var(--primary)" },
-  { icon: Clock, value: "24/7", label: "Disponibilidad total", color: "var(--accent)" },
-  { icon: Globe, value: "30+", label: "Idiomas soportados", color: "var(--secondary)" },
-  { icon: Lightning, value: "30min", label: "Setup completo", color: "var(--warning)" },
-];
+import { useTranslation } from "@/i18n/useTranslation";
 
 const container = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
 const fadeUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
 export default function Stats() {
+  const t = useTranslation();
+
+  const stats = [
+    { icon: PhoneCall, value: t.stats.s1.value, label: t.stats.s1.label, color: "var(--primary)" },
+    { icon: Clock, value: t.stats.s2.value, label: t.stats.s2.label, color: "var(--accent)" },
+    { icon: Globe, value: t.stats.s3.value, label: t.stats.s3.label, color: "var(--secondary)" },
+    { icon: Lightning, value: t.stats.s4.value, label: t.stats.s4.label, color: "var(--warning)" },
+  ];
+
   return (
     <section className="relative py-16">
       <div className="max-w-7xl mx-auto px-6">

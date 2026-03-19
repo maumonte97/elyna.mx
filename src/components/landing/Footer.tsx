@@ -1,38 +1,27 @@
-import Image from "next/image";
+"use client";
 
-const footerLinks = {
-  Producto: [
-    { label: "Asistentes de IA", href: "#" },
-    { label: "Campañas", href: "#" },
-    { label: "Automatización", href: "#" },
-    { label: "Números telefónicos", href: "#" },
-    { label: "API", href: "#" },
-    { label: "WhatsApp API", href: "#" },
-  ],
-  Soluciones: [
-    { label: "Ventas", href: "#" },
-    { label: "Soporte al cliente", href: "#" },
-    { label: "Inmobiliarias", href: "#" },
-    { label: "Salud", href: "#" },
-    { label: "Educación", href: "#" },
-    { label: "Agencias", href: "#" },
-  ],
-  Recursos: [
-    { label: "Documentación", href: "https://documentation.elyna.mx" },
-    { label: "API Reference", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Status", href: "#" },
-  ],
-  Empresa: [
-    { label: "Nosotros", href: "#" },
-    { label: "Contacto", href: "https://elyna.mx/contact" },
-    { label: "Precios", href: "#precios" },
-    { label: "Términos", href: "#" },
-    { label: "Privacidad", href: "#" },
-  ],
-};
+import Image from "next/image";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function Footer() {
+  const t = useTranslation();
+
+  const footerLinks: Record<string, { label: string; href: string }[]> = {
+    [t.footer.product]: t.footer.productLinks.map((label: string) => ({ label, href: "#" })),
+    [t.footer.solutionsLabel]: t.footer.solutionLinks.map((label: string) => ({ label, href: "#" })),
+    [t.footer.resources]: [
+      { label: t.footer.resourceLinks[0], href: "https://documentation.elyna.mx" },
+      ...t.footer.resourceLinks.slice(1).map((label: string) => ({ label, href: "#" })),
+    ],
+    [t.footer.company]: [
+      { label: t.footer.companyLinks[0], href: "#" },
+      { label: t.footer.companyLinks[1], href: "https://elyna.mx/contact" },
+      { label: t.footer.companyLinks[2], href: "#precios" },
+      { label: t.footer.companyLinks[3], href: "#" },
+      { label: t.footer.companyLinks[4], href: "#" },
+    ],
+  };
+
   return (
     <footer className="border-t border-[var(--dark-border)] pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
@@ -41,7 +30,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Image src="/logo.svg" alt="Elyna" width={90} height={34} className="mb-4" />
             <p className="text-sm text-gray-500 leading-relaxed">
-              Automatiza tus llamadas telefónicas con inteligencia artificial.
+              {t.footer.tagline}
             </p>
           </div>
 
@@ -68,17 +57,17 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-[var(--dark-border)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-600">
-            &copy; {new Date().getFullYear()} Elyna. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-xs text-gray-600 hover:text-white transition-colors">
-              Términos
+              {t.footer.terms}
             </a>
             <a href="#" className="text-xs text-gray-600 hover:text-white transition-colors">
-              Privacidad
+              {t.footer.privacy}
             </a>
             <a href="#" className="text-xs text-gray-600 hover:text-white transition-colors">
-              Cookies
+              {t.footer.cookies}
             </a>
           </div>
         </div>

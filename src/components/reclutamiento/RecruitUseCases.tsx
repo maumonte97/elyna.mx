@@ -2,17 +2,31 @@
 
 import { motion } from "framer-motion";
 import { Storefront, Headset, Truck, Buildings, HardHat, GraduationCap } from "@phosphor-icons/react";
+import { useTranslation } from "@/i18n/useTranslation";
 
-const useCases = [
-  { icon: Storefront, title: "Retail y tiendas", description: "Filtra cientos de candidatos para temporada alta en días. Preguntas de disponibilidad horaria, experiencia en punto de venta y cercanía geográfica.", metric: "500+ candidatos/día", color: "var(--primary)" },
-  { icon: Headset, title: "Call centers", description: "Evalúa habilidades de comunicación directamente por teléfono. El agente detecta tono, fluidez y capacidad de seguir scripts.", metric: "80% menos tiempo de filtro", color: "var(--accent)" },
-  { icon: Truck, title: "Logística y operaciones", description: "Verifica licencias, disponibilidad de turnos y experiencia con vehículos o maquinaria de forma automatizada.", metric: "3x más candidatos contactados", color: "var(--secondary)" },
-  { icon: Buildings, title: "Staffing y agencias", description: "Escala tu operación sin escalar tu equipo. Maneja múltiples clientes y vacantes con agentes personalizados para cada una.", metric: "10 vacantes simultáneas", color: "var(--warning)" },
-  { icon: HardHat, title: "Manufactura", description: "Filtra por turnos disponibles, experiencia en planta, certificaciones de seguridad y disposición de reubicación.", metric: "24/7 sin pausas", color: "var(--success)" },
-  { icon: GraduationCap, title: "Filtro técnico básico", description: "Haz preguntas técnicas de primer nivel: conocimiento de herramientas, lenguajes de programación, metodologías o certificaciones.", metric: "Score automático", color: "var(--info)" },
-];
+const icons = [Storefront, Headset, Truck, Buildings, HardHat, GraduationCap];
+const colors = ["var(--primary)", "var(--accent)", "var(--secondary)", "var(--warning)", "var(--success)", "var(--info)"];
 
 export default function RecruitUseCases() {
+  const t = useTranslation();
+
+  const ucKeys = [
+    t.recruit.useCases.uc1,
+    t.recruit.useCases.uc2,
+    t.recruit.useCases.uc3,
+    t.recruit.useCases.uc4,
+    t.recruit.useCases.uc5,
+    t.recruit.useCases.uc6,
+  ];
+
+  const useCases = ucKeys.map((uc, i) => ({
+    icon: icons[i],
+    title: uc.title,
+    description: uc.description,
+    metric: uc.metric,
+    color: colors[i],
+  }));
+
   return (
     <section id="soluciones" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background accent */}
@@ -23,12 +37,12 @@ export default function RecruitUseCases() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">Casos de uso</span>
+          <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">{t.recruit.useCases.tag}</span>
           <h2 className="text-3xl md:text-5xl font-bold mt-3 mb-4">
-            Diseñado para{" "}
-            <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">reclutamiento de alto volumen</span>
+            {t.recruit.useCases.title1}
+            <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">{t.recruit.useCases.titleHighlight}</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Industrias donde el prefiltro con IA marca la diferencia.</p>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">{t.recruit.useCases.subtitle}</p>
         </motion.div>
 
         <div className="space-y-4">

@@ -3,8 +3,10 @@
 import { useState, useRef } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Phone, Robot } from "@phosphor-icons/react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function RecruitDemoCall() {
+  const t = useTranslation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -19,7 +21,7 @@ export default function RecruitDemoCall() {
 
   const handleSubmit = async () => {
     if (!name || !email || !phone) {
-      setError("Completa todos los campos para recibir la llamada");
+      setError(t.recruit.demo.error);
       setTimeout(() => setError(""), 3000);
       animate(x, 0, { type: "spring", stiffness: 300 });
       return;
@@ -58,25 +60,25 @@ export default function RecruitDemoCall() {
             {/* Left */}
             <div className="flex flex-col justify-center">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--success)] text-black text-xs font-semibold w-fit mb-6">
-                Live demo
+                {t.recruit.demo.badge}
               </span>
 
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                Vive una{" "}
-                <span className="text-[var(--success)]">entrevista de filtro</span>{" "}
-                con IA
+                {t.recruit.demo.title1}
+                <span className="text-[var(--success)]">{t.recruit.demo.titleHighlight}</span>{" "}
+                {t.recruit.demo.title2}
               </h2>
 
               <p className="text-gray-400 mb-4">
-                Experimenta cómo nuestro agente de IA realiza una entrevista de prefiltro en tiempo real.
+                {t.recruit.demo.p1}
               </p>
 
               <p className="text-gray-400 mb-6">
-                Llena tus datos y recibirás una llamada donde la IA te hará preguntas de filtro como disponibilidad, experiencia y expectativa salarial.
+                {t.recruit.demo.p2}
               </p>
 
               <p className="text-gray-300 text-sm font-medium">
-                El agente está configurado para una vacante de ejemplo y adaptará las preguntas según tus respuestas.
+                {t.recruit.demo.agentNote}
               </p>
             </div>
 
@@ -93,12 +95,12 @@ export default function RecruitDemoCall() {
                       />
                     </div>
                     <div>
-                      <p className="font-semibold text-lg">Agente de Reclutamiento</p>
+                      <p className="font-semibold text-lg">{t.recruit.demo.agentName}</p>
                       <p className="text-[var(--success)] text-sm font-medium">
-                        Entrevistador IA — Elyna
+                        {t.recruit.demo.agentRole}
                       </p>
                       <p className="text-xs text-gray-400 mt-0.5">
-                        Prefiltro automático
+                        {t.recruit.demo.agentTag}
                       </p>
                     </div>
                   </div>
@@ -106,14 +108,14 @@ export default function RecruitDemoCall() {
                   <div className="space-y-4 mb-6">
                     <input
                       type="text"
-                      placeholder="Tu nombre"
+                      placeholder={t.recruit.demo.namePlaceholder}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 outline-none focus:border-[var(--success)]/40 transition-colors"
                     />
                     <input
                       type="email"
-                      placeholder="Tu e-mail"
+                      placeholder={t.recruit.demo.emailPlaceholder}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 outline-none focus:border-[var(--success)]/40 transition-colors"
@@ -124,7 +126,7 @@ export default function RecruitDemoCall() {
                       </span>
                       <input
                         type="tel"
-                        placeholder="55 1234 5678"
+                        placeholder={t.recruit.demo.phonePlaceholder}
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         className="w-full bg-white/5 border border-white/10 rounded-xl pl-16 pr-4 py-3.5 text-sm text-white placeholder-gray-500 outline-none focus:border-[var(--success)]/40 transition-colors"
@@ -139,9 +141,9 @@ export default function RecruitDemoCall() {
                   )}
 
                   <p className="text-center text-xs text-gray-500 mb-5">
-                    La entrevista dura aproximadamente{" "}
+                    {t.recruit.demo.timeLimit}
                     <span className="text-[var(--success)] font-semibold">
-                      3 minutos
+                      {t.recruit.demo.timeLimitValue}
                     </span>
                   </p>
 
@@ -160,7 +162,7 @@ export default function RecruitDemoCall() {
                       style={{ opacity: textOpacity }}
                     >
                       <span className="text-sm font-semibold text-gray-400 tracking-wider">
-                        → DESLIZA PARA ENTREVISTA
+                        {t.recruit.demo.slideText}
                       </span>
                     </motion.div>
 
@@ -199,10 +201,10 @@ export default function RecruitDemoCall() {
                     />
                   </div>
                   <h3 className="text-2xl font-bold mb-2">
-                    ¡Entrevista en camino!
+                    {t.recruit.demo.successTitle}
                   </h3>
                   <p className="text-gray-400 max-w-xs">
-                    Nuestro agente de reclutamiento IA te llamará en unos segundos. Prepárate para responder preguntas de filtro.
+                    {t.recruit.demo.successMsg}
                   </p>
                 </div>
               )}

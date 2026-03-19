@@ -3,120 +3,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X } from "@phosphor-icons/react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 type FeatureItem = {
   text: string;
   included: boolean;
   highlight?: string;
 };
-
-const plans = [
-  {
-    name: "Starter",
-    monthly: "$47",
-    yearly: "$38",
-    description: "Empieza automatizando llamadas con un Agente IA.",
-    features: [
-      { text: "120 minutos incluidos", included: true, highlight: "$0.39 / min extra" },
-      { text: "1 asistente", included: true },
-      { text: "1 campaña saliente", included: true },
-      { text: "Llamadas en paralelo", included: false },
-      { text: "1 voz clonada", included: true },
-      { text: "800 ejecuciones no-code/mes", included: true },
-      { text: "Knowledgebases", included: false },
-      { text: "Mid-call tools", included: false },
-      { text: "Números propios ilimitados", included: true, highlight: "Ilimitados" },
-      { text: "Web Widget", included: false },
-      { text: "Idiomas secundarios", included: true },
-      { text: "Plataforma de automatización", included: true },
-      { text: "Integraciones de calendario", included: true },
-      { text: "Dashboards personalizados", included: false },
-      { text: "AI prompt editor", included: true },
-      { text: "Flow builder", included: true },
-    ] as FeatureItem[],
-    cta: "Comprar plan",
-    popular: false,
-  },
-  {
-    name: "Growth",
-    monthly: "$224",
-    yearly: "$179.20",
-    description: "Para PYMES automatizando llamadas entrantes y salientes.",
-    features: [
-      { text: "700 minutos incluidos", included: true, highlight: "$0.32 / min extra" },
-      { text: "5 asistentes", included: true },
-      { text: "5 campañas salientes", included: true },
-      { text: "3 llamadas en paralelo", included: true },
-      { text: "5 voces clonadas", included: true },
-      { text: "7,000 ejecuciones no-code/mes", included: true },
-      { text: "1 knowledgebase", included: true },
-      { text: "5 mid-call tools", included: true },
-      { text: "Números propios ilimitados", included: true, highlight: "Ilimitados" },
-      { text: "Web Widget", included: true },
-      { text: "Idiomas secundarios", included: true },
-      { text: "Plataforma de automatización", included: true },
-      { text: "Integraciones de calendario", included: true },
-      { text: "Dashboards personalizados", included: false },
-      { text: "AI prompt editor", included: true },
-      { text: "Flow builder", included: true },
-    ] as FeatureItem[],
-    cta: "Comprar plan",
-    popular: true,
-  },
-  {
-    name: "Business Pro",
-    monthly: "$476",
-    yearly: "$380.75",
-    description: "Ideal para empresas y agencias que operan alto volumen de llamadas con IA.",
-    features: [
-      { text: "1,700 minutos incluidos", included: true, highlight: "$0.28 / min extra" },
-      { text: "10 asistentes", included: true },
-      { text: "10 campañas salientes", included: true },
-      { text: "10 llamadas en paralelo", included: true },
-      { text: "10 voces clonadas", included: true },
-      { text: "20,000 ejecuciones no-code/mes", included: true },
-      { text: "3 knowledgebases", included: true },
-      { text: "20 mid-call tools", included: true },
-      { text: "Números propios ilimitados", included: true, highlight: "Ilimitados" },
-      { text: "Web Widget", included: true },
-      { text: "Idiomas secundarios", included: true },
-      { text: "Plataforma de automatización", included: true },
-      { text: "Integraciones de calendario", included: true },
-      { text: "Dashboards personalizados", included: true },
-      { text: "AI prompt editor", included: true },
-      { text: "Flow builder", included: true },
-    ] as FeatureItem[],
-    cta: "Comprar plan",
-    popular: false,
-  },
-  {
-    name: "Enterprise",
-    monthly: "$1,035",
-    yearly: "$828",
-    description: "Para empresas y agencias que requieren asistencia 1 on 1.",
-    features: [
-      { text: "4,500 minutos incluidos", included: true, highlight: "$0.22 / min extra" },
-      { text: "Asistentes ilimitados", included: true, highlight: "Ilimitados" },
-      { text: "Campañas ilimitadas", included: true, highlight: "Ilimitadas" },
-      { text: "Llamadas en paralelo ilimitadas", included: true, highlight: "Ilimitadas" },
-      { text: "Voces clonadas ilimitadas", included: true, highlight: "Ilimitadas" },
-      { text: "Ejecuciones no-code ilimitadas", included: true, highlight: "Ilimitadas" },
-      { text: "Knowledgebases ilimitadas", included: true, highlight: "Ilimitadas" },
-      { text: "Mid-call tools ilimitados", included: true, highlight: "Ilimitados" },
-      { text: "Números propios ilimitados", included: true, highlight: "Ilimitados" },
-      { text: "Web Widget", included: true },
-      { text: "Idiomas secundarios", included: true },
-      { text: "Plataforma de automatización", included: true },
-      { text: "Integraciones de calendario", included: true },
-      { text: "Dashboards personalizados", included: true },
-      { text: "AI prompt editor", included: true },
-      { text: "Flow builder", included: true },
-      { text: "Account Manager 1-on-1", included: true },
-    ] as FeatureItem[],
-    cta: "Comprar plan",
-    popular: false,
-  },
-];
 
 const container = {
   hidden: {},
@@ -130,6 +23,112 @@ const fadeUp = {
 
 export default function Pricing() {
   const [annual, setAnnual] = useState(true);
+  const t = useTranslation();
+  const tf = t.pricing.features;
+
+  const plans = [
+    {
+      name: "Starter",
+      monthly: "$47",
+      yearly: "$38",
+      description: t.pricing.starter.description,
+      features: [
+        { text: tf.minutes("120"), included: true, highlight: tf.extraMin("$0.39") },
+        { text: tf.assistants("1"), included: true },
+        { text: tf.campaigns("1"), included: true },
+        { text: tf.noParallelCalls, included: false },
+        { text: tf.clonedVoices("1"), included: true },
+        { text: tf.nocodeRuns("800"), included: true },
+        { text: tf.noKnowledgebases, included: false },
+        { text: tf.noMidcallTools, included: false },
+        { text: tf.unlimitedNumbers, included: true, highlight: tf.unlimited },
+        { text: tf.webWidget, included: false },
+        { text: tf.secondaryLanguages, included: true },
+        { text: tf.automationPlatform, included: true },
+        { text: tf.calendarIntegrations, included: true },
+        { text: tf.customDashboards, included: false },
+        { text: tf.aiPromptEditor, included: true },
+        { text: tf.flowBuilder, included: true },
+      ] as FeatureItem[],
+      popular: false,
+    },
+    {
+      name: "Growth",
+      monthly: "$224",
+      yearly: "$179.20",
+      description: t.pricing.growth.description,
+      features: [
+        { text: tf.minutes("700"), included: true, highlight: tf.extraMin("$0.32") },
+        { text: tf.assistants("5"), included: true },
+        { text: tf.campaigns("5"), included: true },
+        { text: tf.parallelCalls("3"), included: true },
+        { text: tf.clonedVoices("5"), included: true },
+        { text: tf.nocodeRuns("7,000"), included: true },
+        { text: tf.knowledgebases("1"), included: true },
+        { text: tf.midcallTools("5"), included: true },
+        { text: tf.unlimitedNumbers, included: true, highlight: tf.unlimited },
+        { text: tf.webWidget, included: true },
+        { text: tf.secondaryLanguages, included: true },
+        { text: tf.automationPlatform, included: true },
+        { text: tf.calendarIntegrations, included: true },
+        { text: tf.customDashboards, included: false },
+        { text: tf.aiPromptEditor, included: true },
+        { text: tf.flowBuilder, included: true },
+      ] as FeatureItem[],
+      popular: true,
+    },
+    {
+      name: "Business Pro",
+      monthly: "$476",
+      yearly: "$380.75",
+      description: t.pricing.businessPro.description,
+      features: [
+        { text: tf.minutes("1,700"), included: true, highlight: tf.extraMin("$0.28") },
+        { text: tf.assistants("10"), included: true },
+        { text: tf.campaigns("10"), included: true },
+        { text: tf.parallelCalls("10"), included: true },
+        { text: tf.clonedVoices("10"), included: true },
+        { text: tf.nocodeRuns("20,000"), included: true },
+        { text: tf.knowledgebases("3"), included: true },
+        { text: tf.midcallTools("20"), included: true },
+        { text: tf.unlimitedNumbers, included: true, highlight: tf.unlimited },
+        { text: tf.webWidget, included: true },
+        { text: tf.secondaryLanguages, included: true },
+        { text: tf.automationPlatform, included: true },
+        { text: tf.calendarIntegrations, included: true },
+        { text: tf.customDashboards, included: true },
+        { text: tf.aiPromptEditor, included: true },
+        { text: tf.flowBuilder, included: true },
+      ] as FeatureItem[],
+      popular: false,
+    },
+    {
+      name: "Enterprise",
+      monthly: "$1,035",
+      yearly: "$828",
+      description: t.pricing.enterprise.description,
+      features: [
+        { text: tf.minutes("4,500"), included: true, highlight: tf.extraMin("$0.22") },
+        { text: tf.unlimitedAssistants, included: true, highlight: tf.unlimited },
+        { text: tf.unlimitedCampaigns, included: true, highlight: tf.unlimitedFem },
+        { text: tf.unlimitedParallelCalls, included: true, highlight: tf.unlimitedFem },
+        { text: tf.unlimitedClonedVoices, included: true, highlight: tf.unlimitedFem },
+        { text: tf.unlimitedNocodeRuns, included: true, highlight: tf.unlimitedFem },
+        { text: tf.unlimitedKnowledgebases, included: true, highlight: tf.unlimitedFem },
+        { text: tf.unlimitedMidcallTools, included: true, highlight: tf.unlimited },
+        { text: tf.unlimitedNumbers, included: true, highlight: tf.unlimited },
+        { text: tf.webWidget, included: true },
+        { text: tf.secondaryLanguages, included: true },
+        { text: tf.automationPlatform, included: true },
+        { text: tf.calendarIntegrations, included: true },
+        { text: tf.customDashboards, included: true },
+        { text: tf.aiPromptEditor, included: true },
+        { text: tf.flowBuilder, included: true },
+        { text: tf.accountManager, included: true },
+      ] as FeatureItem[],
+      popular: false,
+    },
+  ];
 
   return (
     <section id="precios" className="py-24 md:py-32">
@@ -142,16 +141,16 @@ export default function Pricing() {
           className="text-center mb-10"
         >
           <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">
-            Precios
+            {t.pricing.tag}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mt-3 mb-4">
-            Planes que se adaptan a{" "}
+            {t.pricing.title1}
             <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] bg-clip-text text-transparent">
-              tu crecimiento
+              {t.pricing.titleHighlight}
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Paga mensual o ahorra hasta un 20% con facturación anual.
+            {t.pricing.subtitle}
           </p>
         </motion.div>
 
@@ -165,7 +164,7 @@ export default function Pricing() {
                 : "bg-white/5 text-gray-400 hover:text-white"
             }`}
           >
-            Mensual
+            {t.pricing.monthly}
           </button>
           <button
             onClick={() => setAnnual(true)}
@@ -175,8 +174,8 @@ export default function Pricing() {
                 : "bg-white/5 text-gray-400 hover:text-white"
             }`}
           >
-            Anual
-            <span className="ml-1.5 text-xs opacity-80">-20%</span>
+            {t.pricing.annual}
+            <span className="ml-1.5 text-xs opacity-80">{t.pricing.discount}</span>
           </button>
         </div>
 
@@ -201,7 +200,7 @@ export default function Pricing() {
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="px-4 py-1 rounded-full text-xs font-semibold bg-[var(--primary)] text-white">
-                    Más popular
+                    {t.pricing.mostPopular}
                   </span>
                 </div>
               )}
@@ -213,7 +212,7 @@ export default function Pricing() {
                   <span className="text-3xl font-bold">
                     {annual ? plan.yearly : plan.monthly}
                   </span>
-                  <span className="text-gray-500 text-sm">/mo</span>
+                  <span className="text-gray-500 text-sm">{t.pricing.mo}</span>
                 </div>
               </div>
 
@@ -225,10 +224,10 @@ export default function Pricing() {
                     : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
                 }`}
               >
-                {plan.cta}
+                {t.pricing.buy}
               </a>
 
-              <p className="text-xs font-semibold text-gray-400 mb-3">Incluye:</p>
+              <p className="text-xs font-semibold text-gray-400 mb-3">{t.pricing.includes}</p>
               <div className="space-y-2.5 flex-1">
                 {plan.features.map((feature) => (
                   <div key={feature.text} className="flex items-start gap-2.5">

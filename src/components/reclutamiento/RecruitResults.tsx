@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle, XCircle, Clock } from "@phosphor-icons/react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 const candidates = [
   { name: "María García L.", role: "Analista Sr.", score: 92, exp: "4 años", salary: "$35,000", status: "qualified" },
@@ -12,19 +13,21 @@ const candidates = [
 ];
 
 export default function RecruitResults() {
+  const t = useTranslation();
+
   return (
     <section className="py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Copy */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">Resultados</span>
+            <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">{t.recruit.results.tag}</span>
             <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-4">
-              De cientos de CVs a una{" "}
-              <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">lista corta con score</span>
+              {t.recruit.results.title1}
+              <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">{t.recruit.results.titleHighlight}</span>
             </h2>
             <p className="text-gray-400 mb-6">
-              Después del prefiltro, recibes un ranking claro con los datos que importan. Tu equipo solo dedica tiempo a los candidatos que ya pasaron el primer filtro.
+              {t.recruit.results.subtitle}
             </p>
 
             <div className="space-y-4">
@@ -33,8 +36,8 @@ export default function RecruitResults() {
                   <CheckCircle size={18} weight="duotone" className="text-[var(--success)]" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm">Score basado en tus criterios</p>
-                  <p className="text-xs text-gray-400">Tú defines el peso: experiencia 40%, salario 30%, disponibilidad 30%.</p>
+                  <p className="font-semibold text-sm">{t.recruit.results.f1.title}</p>
+                  <p className="text-xs text-gray-400">{t.recruit.results.f1.desc}</p>
                 </div>
               </div>
               <div className="flex gap-3 items-start">
@@ -42,8 +45,8 @@ export default function RecruitResults() {
                   <CheckCircle size={18} weight="duotone" className="text-[var(--primary)]" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm">Transcripción y resumen de cada llamada</p>
-                  <p className="text-xs text-gray-400">Revisa exactamente qué dijo cada candidato sin escuchar la grabación completa.</p>
+                  <p className="font-semibold text-sm">{t.recruit.results.f2.title}</p>
+                  <p className="text-xs text-gray-400">{t.recruit.results.f2.desc}</p>
                 </div>
               </div>
               <div className="flex gap-3 items-start">
@@ -51,8 +54,8 @@ export default function RecruitResults() {
                   <CheckCircle size={18} weight="duotone" className="text-[var(--accent)]" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm">Variables extraídas automáticamente</p>
-                  <p className="text-xs text-gray-400">Experiencia, salario, disponibilidad, ubicación — todo estructurado y listo para exportar.</p>
+                  <p className="font-semibold text-sm">{t.recruit.results.f3.title}</p>
+                  <p className="text-xs text-gray-400">{t.recruit.results.f3.desc}</p>
                 </div>
               </div>
             </div>
@@ -64,20 +67,20 @@ export default function RecruitResults() {
               {/* Header */}
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <p className="text-sm font-semibold">Vacante: Analista Sr. Datos</p>
-                  <p className="text-xs text-gray-500">Campaña finalizada — 47 de 50 contactados</p>
+                  <p className="text-sm font-semibold">{t.recruit.results.mockTitle}</p>
+                  <p className="text-xs text-gray-500">{t.recruit.results.mockSubtitle}</p>
                 </div>
-                <span className="text-xs font-medium text-[var(--success)] bg-[var(--success)]/10 px-3 py-1 rounded-full">94% contactados</span>
+                <span className="text-xs font-medium text-[var(--success)] bg-[var(--success)]/10 px-3 py-1 rounded-full">{t.recruit.results.mockBadge}</span>
               </div>
 
               {/* Table */}
               <div className="rounded-xl overflow-hidden border border-[var(--dark-border)]">
                 {/* Table header */}
                 <div className="grid grid-cols-12 gap-2 px-4 py-2.5 bg-white/5 text-[10px] text-gray-500 uppercase tracking-wider font-semibold">
-                  <span className="col-span-4">Candidato</span>
-                  <span className="col-span-2 text-center">Exp.</span>
-                  <span className="col-span-3 text-center">Salario</span>
-                  <span className="col-span-3 text-center">Score</span>
+                  <span className="col-span-4">{t.recruit.results.tableHeaders.candidate}</span>
+                  <span className="col-span-2 text-center">{t.recruit.results.tableHeaders.exp}</span>
+                  <span className="col-span-3 text-center">{t.recruit.results.tableHeaders.salary}</span>
+                  <span className="col-span-3 text-center">{t.recruit.results.tableHeaders.score}</span>
                 </div>
 
                 {/* Rows */}
@@ -101,7 +104,7 @@ export default function RecruitResults() {
                           {c.score}/100
                         </span>
                       ) : (
-                        <span className="text-xs text-gray-600">Pendiente</span>
+                        <span className="text-xs text-gray-600">{t.recruit.results.pending}</span>
                       )}
                     </div>
                   </div>

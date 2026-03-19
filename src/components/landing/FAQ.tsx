@@ -3,42 +3,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CaretDown } from "@phosphor-icons/react";
-
-const faqs = [
-  {
-    question: "¿Qué tan natural suena el asistente de IA?",
-    answer:
-      "Nuestros asistentes utilizan tecnología de voz de ElevenLabs, líder mundial en síntesis de voz. Puedes elegir entre docenas de voces predefinidas o clonar tu propia voz con solo una muestra de audio. Los asistentes incluyen muletillas naturales y pausas para una conversación fluida.",
-  },
-  {
-    question: "¿En qué idiomas funciona?",
-    answer:
-      "Elyna soporta más de 30 idiomas incluyendo español, inglés, portugués, francés, alemán, y muchos más. El asistente puede detectar automáticamente el idioma del interlocutor y responder en el mismo idioma.",
-  },
-  {
-    question: "¿Necesito conocimientos técnicos para usar la plataforma?",
-    answer:
-      "No. Elyna está diseñada como una plataforma sin código (no-code). Configuras tu asistente con un prompt en lenguaje natural, seleccionas la voz, y estás listo. Para integraciones avanzadas, ofrecemos API REST y webhooks con documentación completa.",
-  },
-  {
-    question: "¿Cómo funciona la facturación?",
-    answer:
-      "Facturamos por plan mensual o anual con minutos incluidos. El plan Starter incluye 120 minutos. Los minutos adicionales se cobran según tu plan (desde $0.22/min en Enterprise hasta $0.39/min en Starter). Los planes anuales tienen hasta un 20% de descuento.",
-  },
-  {
-    question: "¿Puedo integrar Elyna con mi CRM?",
-    answer:
-      "Sí. Ofrecemos integraciones nativas con HubSpot, GoHighLevel, y más. Además, puedes conectar cualquier herramienta a través de nuestra API REST, webhooks, o plataforma de automatización visual compatible con Zapier y Make.",
-  },
-  {
-    question: "¿Cómo funciona la integración con WhatsApp?",
-    answer:
-      "Elyna se conecta directamente con WhatsApp Cloud API. Puedes enviar mensajes automáticos después de una llamada (resúmenes, confirmaciones, links de pago), dar seguimiento a leads por WhatsApp y crear agentes conversacionales que atienden mensajes entrantes de forma autónoma.",
-  },
-];
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const t = useTranslation();
+
+  const faqs = [
+    { question: t.faq.q1.q, answer: t.faq.q1.a },
+    { question: t.faq.q2.q, answer: t.faq.q2.a },
+    { question: t.faq.q3.q, answer: t.faq.q3.a },
+    { question: t.faq.q4.q, answer: t.faq.q4.a },
+    { question: t.faq.q5.q, answer: t.faq.q5.a },
+    { question: t.faq.q6.q, answer: t.faq.q6.a },
+  ];
 
   return (
     <section className="py-24 md:py-32">
@@ -50,10 +28,10 @@ export default function FAQ() {
           className="text-center mb-16"
         >
           <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">
-            FAQ
+            {t.faq.tag}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mt-3">
-            Preguntas frecuentes
+            {t.faq.title}
           </h2>
         </motion.div>
 

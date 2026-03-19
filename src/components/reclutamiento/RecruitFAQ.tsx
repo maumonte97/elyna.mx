@@ -3,36 +3,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CaretDown } from "@phosphor-icons/react";
-
-const faqs = [
-  {
-    question: "¿Los candidatos saben que hablan con una IA?",
-    answer: "Puedes configurar el agente para que se presente como asistente de IA o como representante de tu empresa. La voz es tan natural que muchos candidatos no notan la diferencia. Recomendamos transparencia — en nuestra experiencia, los candidatos valoran la rapidez del proceso más que el medio.",
-  },
-  {
-    question: "¿Qué preguntas puede hacer el agente?",
-    answer: "Cualquier pregunta que definas en el prompt: experiencia laboral, disponibilidad horaria, expectativa salarial, ubicación, idiomas, certificaciones, habilidades técnicas, disposición a viajar — y preguntas de seguimiento dinámicas basadas en las respuestas del candidato.",
-  },
-  {
-    question: "¿Cómo se genera el score de cada candidato?",
-    answer: "Tú defines los criterios y su peso (ej: experiencia 40%, disponibilidad 30%, salario 30%). La IA extrae las variables de la conversación y calcula el score automáticamente. Puedes ver el desglose completo en el dashboard.",
-  },
-  {
-    question: "¿Puedo integrar esto con mi ATS actual?",
-    answer: "Sí. Elyna se integra vía API REST, webhooks y automatizaciones no-code con herramientas como HubSpot, Salesforce, Google Sheets, Zapier, Make y más. Los datos del candidato (score, transcripción, variables) se envían automáticamente a tu sistema.",
-  },
-  {
-    question: "¿Qué pasa si el candidato no contesta?",
-    answer: "El agente reintenta automáticamente según las reglas que configures: hasta 5 reintentos, con intervalos de 10 minutos a 3 días. También puede dejar mensaje de buzón de voz automáticamente.",
-  },
-  {
-    question: "¿Cuántos candidatos puede llamar a la vez?",
-    answer: "Depende de tu plan. Desde 1 llamada simultánea en Starter hasta llamadas en paralelo ilimitadas en Enterprise. Un plan Growth con 3 líneas paralelas puede procesar más de 200 entrevistas al día.",
-  },
-];
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function RecruitFAQ() {
+  const t = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    { question: t.recruit.faq.q1.q, answer: t.recruit.faq.q1.a },
+    { question: t.recruit.faq.q2.q, answer: t.recruit.faq.q2.a },
+    { question: t.recruit.faq.q3.q, answer: t.recruit.faq.q3.a },
+    { question: t.recruit.faq.q4.q, answer: t.recruit.faq.q4.a },
+    { question: t.recruit.faq.q5.q, answer: t.recruit.faq.q5.a },
+    { question: t.recruit.faq.q6.q, answer: t.recruit.faq.q6.a },
+  ];
 
   return (
     <section className="py-24 md:py-32">
@@ -44,10 +28,10 @@ export default function RecruitFAQ() {
           className="text-center mb-16"
         >
           <span className="text-[var(--primary)] text-sm font-semibold uppercase tracking-wider">
-            FAQ
+            {t.recruit.faq.tag}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mt-3">
-            Preguntas frecuentes
+            {t.recruit.faq.title}
           </h2>
         </motion.div>
 

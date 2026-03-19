@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Phone, Robot } from "@phosphor-icons/react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function DemoCall() {
   const [name, setName] = useState("");
@@ -11,6 +12,7 @@ export default function DemoCall() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const trackRef = useRef<HTMLDivElement>(null);
+  const t = useTranslation();
 
   const x = useMotionValue(0);
   const trackWidth = 340; // approximate, recalculated on drag
@@ -19,7 +21,7 @@ export default function DemoCall() {
 
   const handleSubmit = async () => {
     if (!name || !email || !phone) {
-      setError("Completa todos los campos para recibir la llamada");
+      setError(t.demo.error);
       setTimeout(() => setError(""), 3000);
       animate(x, 0, { type: "spring", stiffness: 300 });
       return;
@@ -58,28 +60,24 @@ export default function DemoCall() {
             {/* Left */}
             <div className="flex flex-col justify-center">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--success)] text-black text-xs font-semibold w-fit mb-6">
-                Live demo
+                {t.demo.badge}
               </span>
 
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                ¿No lo crees?{" "}
-                <span className="text-[var(--success)]">Prueba AHORA</span> una
-                llamada gratis
+                {t.demo.title1}
+                <span className="text-[var(--success)]">{t.demo.titleHighlight}</span>{t.demo.title2}
               </h2>
 
               <p className="text-gray-400 mb-4">
-                ¿Tienes curiosidad de cómo funcionan nuestros agentes de IA?
+                {t.demo.p1}
               </p>
 
               <p className="text-gray-400 mb-6">
-                Vive la experiencia de primera mano con una llamada demo
-                gratuita. Llena tus datos y nuestro representante de IA te
-                llamará al instante.
+                {t.demo.p2}
               </p>
 
               <p className="text-gray-300 text-sm font-medium">
-                El agente está entrenado para hablar sobre los servicios de Elyna
-                y agendar citas.
+                {t.demo.agentNote}
               </p>
             </div>
 
@@ -96,12 +94,12 @@ export default function DemoCall() {
                       />
                     </div>
                     <div>
-                      <p className="font-semibold text-lg">Demo AI Agent</p>
+                      <p className="font-semibold text-lg">{t.demo.agentName}</p>
                       <p className="text-[var(--success)] text-sm font-medium">
-                        Representante Elyna
+                        {t.demo.agentRole}
                       </p>
                       <p className="text-xs text-gray-400 mt-0.5">
-                        🇲🇽 Español
+                        {t.demo.agentLang}
                       </p>
                     </div>
                   </div>
@@ -109,25 +107,25 @@ export default function DemoCall() {
                   <div className="space-y-4 mb-6">
                     <input
                       type="text"
-                      placeholder="Tu nombre"
+                      placeholder={t.demo.namePlaceholder}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 outline-none focus:border-[var(--success)]/40 transition-colors"
                     />
                     <input
                       type="email"
-                      placeholder="Tu e-mail"
+                      placeholder={t.demo.emailPlaceholder}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 outline-none focus:border-[var(--success)]/40 transition-colors"
                     />
                     <div className="relative">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-gray-400">
-                        🇲🇽 +52
+                        +52
                       </span>
                       <input
                         type="tel"
-                        placeholder="55 1234 5678"
+                        placeholder={t.demo.phonePlaceholder}
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         className="w-full bg-white/5 border border-white/10 rounded-xl pl-20 pr-4 py-3.5 text-sm text-white placeholder-gray-500 outline-none focus:border-[var(--success)]/40 transition-colors"
@@ -142,9 +140,9 @@ export default function DemoCall() {
                   )}
 
                   <p className="text-center text-xs text-gray-500 mb-5">
-                    La llamada terminará automáticamente después de{" "}
+                    {t.demo.timeLimit}
                     <span className="text-[var(--success)] font-semibold">
-                      5 minutos
+                      {t.demo.timeLimitValue}
                     </span>
                   </p>
 
@@ -165,7 +163,7 @@ export default function DemoCall() {
                       style={{ opacity: textOpacity }}
                     >
                       <span className="text-sm font-semibold text-gray-400 tracking-wider">
-                        → DESLIZA PARA LLAMAR
+                        {t.demo.slideText}
                       </span>
                     </motion.div>
 
@@ -205,11 +203,10 @@ export default function DemoCall() {
                     />
                   </div>
                   <h3 className="text-2xl font-bold mb-2">
-                    ¡Llamada en camino!
+                    {t.demo.successTitle}
                   </h3>
                   <p className="text-gray-400 max-w-xs">
-                    Nuestro agente de IA te llamará en unos segundos al número
-                    proporcionado. ¡Prepárate!
+                    {t.demo.successMsg}
                   </p>
                 </div>
               )}

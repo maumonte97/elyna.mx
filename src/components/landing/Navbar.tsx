@@ -4,16 +4,19 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, X } from "@phosphor-icons/react";
 import Image from "next/image";
-
-const navLinks = [
-  { label: "Producto", href: "#producto" },
-  { label: "Soluciones", href: "#soluciones" },
-  { label: "Integraciones", href: "#integraciones" },
-  { label: "Precios", href: "#precios" },
-];
+import { useTranslation } from "@/i18n/useTranslation";
+import LanguageSelector from "@/components/LanguageSelector";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const t = useTranslation();
+
+  const navLinks = [
+    { label: t.nav.product, href: "#producto" },
+    { label: t.nav.solutions, href: "#soluciones" },
+    { label: t.nav.integrations, href: "#integraciones" },
+    { label: t.nav.pricing, href: "#precios" },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#040514]/80 border-b border-white/5">
@@ -29,8 +32,9 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="#" className="text-sm text-gray-300 hover:text-white transition-colors">Iniciar sesión</a>
-          <a href="#" className="text-sm font-semibold bg-[var(--primary)] text-white px-5 py-2.5 rounded-[22px] hover:bg-[var(--primary-dark)] transition-colors">Prueba gratis</a>
+          <a href="#" className="text-sm text-gray-300 hover:text-white transition-colors">{t.nav.login}</a>
+          <LanguageSelector />
+          <a href="#" className="text-sm font-semibold bg-[var(--primary)] text-white px-5 py-2.5 rounded-[22px] hover:bg-[var(--primary-dark)] transition-colors">{t.nav.cta}</a>
         </div>
 
         <button onClick={() => setOpen(!open)} className="md:hidden text-white">
@@ -46,8 +50,9 @@ export default function Navbar() {
                 <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="text-gray-300 hover:text-white transition-colors">{link.label}</a>
               ))}
               <hr className="border-white/10" />
-              <a href="#" className="text-gray-300 hover:text-white">Iniciar sesión</a>
-              <a href="#" className="text-center font-semibold bg-[var(--primary)] text-white px-5 py-2.5 rounded-[22px]">Prueba gratis</a>
+              <a href="#" className="text-gray-300 hover:text-white">{t.nav.login}</a>
+              <LanguageSelector />
+              <a href="#" className="text-center font-semibold bg-[var(--primary)] text-white px-5 py-2.5 rounded-[22px]">{t.nav.cta}</a>
             </div>
           </motion.div>
         )}

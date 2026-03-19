@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "@phosphor-icons/react";
 import Image from "next/image";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export default function CTA() {
+  const t = useTranslation();
+
   return (
     <section className="py-24 md:py-32">
       <div className="max-w-4xl mx-auto px-6">
@@ -26,10 +29,10 @@ export default function CTA() {
             />
 
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              ¿Listo para automatizar tus llamadas?
+              {t.cta.title}
             </h2>
             <p className="text-gray-400 text-lg max-w-xl mx-auto mb-8">
-              Activa tu asistente de IA en minutos. Empieza desde $38/mes.
+              {t.cta.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -37,7 +40,7 @@ export default function CTA() {
                 href="#"
                 className="group flex items-center gap-2 bg-[var(--primary)] text-white font-semibold px-8 py-3.5 rounded-[22px] hover:bg-[var(--primary-dark)] transition-all"
               >
-                Comienza ahora
+                {t.cta.cta1}
                 <ArrowRight
                   size={18}
                   className="group-hover:translate-x-1 transition-transform"
@@ -47,7 +50,7 @@ export default function CTA() {
                 href="#"
                 className="text-sm text-gray-400 hover:text-white transition-colors"
               >
-                Hablar con ventas →
+                {t.cta.cta2}
               </a>
             </div>
           </div>
