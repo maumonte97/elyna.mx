@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, GitBranch, EnvelopeSimple, Database, WebhooksLogo, Spreadsheet } from "@phosphor-icons/react";
+import { Phone, GitBranch, EnvelopeSimple, Database, WebhooksLogo, Table } from "@phosphor-icons/react";
 
 export default function RecruitAutomation() {
   return (
@@ -82,7 +82,7 @@ export default function RecruitAutomation() {
               <div className="space-y-3">
                 <p className="text-center text-xs font-semibold text-[var(--warning)] uppercase tracking-wider mb-4">No calificado</p>
                 {[
-                  { icon: Spreadsheet, label: "Registrar en Google Sheets", detail: "Archivo de candidatos descartados con motivo" },
+                  { icon: Table, label: "Registrar en Google Sheets", detail: "Archivo de candidatos descartados con motivo" },
                   { icon: EnvelopeSimple, label: "Email de agradecimiento", detail: "Notificar amablemente que no avanza" },
                   { icon: Database, label: "Actualizar ATS", detail: "Marcar como 'No apto' con resumen IA" },
                 ].map((action, i) => (
