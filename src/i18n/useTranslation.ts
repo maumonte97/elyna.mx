@@ -3,7 +3,7 @@
 import { useLocale } from "./LanguageContext";
 import { dictionaries, Dictionary } from "./dictionaries";
 
-export function useTranslation(): Dictionary {
+export function useTranslation() {
   const locale = useLocale();
-  return dictionaries[locale];
+  return dictionaries[locale] as Dictionary;
 }

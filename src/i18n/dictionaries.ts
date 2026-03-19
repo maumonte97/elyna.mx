@@ -796,4 +796,4 @@ export const dictionaries = {
   },
 } as const;
 
-export type Dictionary = typeof dictionaries.es;
+export type Dictionary = (typeof dictionaries)["es"];
