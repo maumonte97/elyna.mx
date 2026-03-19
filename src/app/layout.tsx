@@ -9,7 +9,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "Elyna — Automatiza tus llamadas con IA",
+  title: "Elyna — Automatiza tus Llamadas con IA",
   description:
     "Crea asistentes de voz con inteligencia artificial, lanza campañas de llamadas y automatiza tu comunicación telefónica sin código.",
 };
