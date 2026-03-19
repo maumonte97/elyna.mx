@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, GitBranch, EnvelopeSimple, Database, Webhook, Table } from "@phosphor-icons/react";
+import { Phone, GitBranch, EnvelopeSimple, Database, WebhooksLogo, Spreadsheet } from "@phosphor-icons/react";
 
 export default function RecruitAutomation() {
   return (
@@ -66,7 +66,7 @@ export default function RecruitAutomation() {
                 {[
                   { icon: Database, label: "Actualizar ATS/CRM", detail: "Mover candidato a etapa 'Entrevista RRHH'" },
                   { icon: EnvelopeSimple, label: "Email al candidato", detail: "Confirmar siguiente paso del proceso" },
-                  { icon: Webhook, label: "Webhook a Slack", detail: "Notificar al reclutador asignado" },
+                  { icon: WebhooksLogo, label: "Webhook a Slack", detail: "Notificar al reclutador asignado" },
                 ].map((action, i) => (
                   <div key={i} className="flex items-center gap-3 bg-[var(--success)]/5 border border-[var(--success)]/10 rounded-xl px-4 py-3">
                     <action.icon size={18} weight="duotone" className="text-[var(--success)] shrink-0" />
@@ -82,7 +82,7 @@ export default function RecruitAutomation() {
               <div className="space-y-3">
                 <p className="text-center text-xs font-semibold text-[var(--warning)] uppercase tracking-wider mb-4">No calificado</p>
                 {[
-                  { icon: Table, label: "Registrar en Google Sheets", detail: "Archivo de candidatos descartados con motivo" },
+                  { icon: Spreadsheet, label: "Registrar en Google Sheets", detail: "Archivo de candidatos descartados con motivo" },
                   { icon: EnvelopeSimple, label: "Email de agradecimiento", detail: "Notificar amablemente que no avanza" },
                   { icon: Database, label: "Actualizar ATS", detail: "Marcar como 'No apto' con resumen IA" },
                 ].map((action, i) => (
