@@ -7,7 +7,7 @@ import RecruitDemoCall from "@/components/reclutamiento/RecruitDemoCall";
 import RecruitHowItWorks from "@/components/reclutamiento/RecruitHowItWorks";
 import RecruitFeatures from "@/components/reclutamiento/RecruitFeatures";
 import RecruitUseCases from "@/components/reclutamiento/RecruitUseCases";
-import RecruitTransfer from "@/components/reclutamiento/RecruitTransfer";
+import RecruitResults from "@/components/reclutamiento/RecruitResults";
 import RecruitAutomation from "@/components/reclutamiento/RecruitAutomation";
 import Integrations from "@/components/landing/Integrations";
 import Pricing from "@/components/landing/Pricing";
@@ -25,7 +25,7 @@ export default function ReclutamientoPage() {
       <RecruitHowItWorks />
       <RecruitFeatures />
       <RecruitUseCases />
-      <RecruitTransfer />
+      <RecruitResults />
       <RecruitAutomation />
       <Integrations />
       <Pricing />

@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, PhoneX, UsersThree, TrendDown } from "@phosphor-icons/react";
+import { Clock, PhoneX, UsersThree, FunnelSimple } from "@phosphor-icons/react";
 
 const problems = [
   { icon: Clock, value: "70%", label: "del tiempo de RRHH se va en llamadas de filtro que no avanzan", color: "var(--danger)", source: "SHRM, 2024" },
   { icon: PhoneX, value: "5+ días", label: "promedio para contactar a un candidato después de aplicar", color: "var(--warning)", source: "Glassdoor Research" },
   { icon: UsersThree, value: "60%", label: "de los candidatos abandonan el proceso por falta de respuesta rápida", color: "var(--primary)", source: "CareerBuilder" },
-  { icon: TrendDown, value: "$4,700", label: "USD costo promedio por contratación en México", color: "var(--secondary)", source: "SHRM Benchmarking" },
+  { icon: FunnelSimple, value: "88%", label: "de los CVs recibidos no cumplen los requisitos mínimos del puesto", color: "var(--secondary)", source: "Ideal / Harvard Business Review" },
 ];
 
 const container = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
@@ -20,10 +20,10 @@ export default function RecruitProblem() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
           <span className="text-[var(--danger)] text-sm font-semibold uppercase tracking-wider">El problema</span>
           <h2 className="text-3xl md:text-5xl font-bold mt-3 mb-4">
-            El reclutamiento masivo{" "}
-            <span className="bg-gradient-to-r from-[var(--danger)] to-[var(--warning)] bg-clip-text text-transparent">está roto</span>
+            Tu equipo pierde tiempo{" "}
+            <span className="bg-gradient-to-r from-[var(--danger)] to-[var(--warning)] bg-clip-text text-transparent">filtrando candidatos que no califican</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Tu equipo de RRHH pierde horas en llamadas repetitivas mientras los mejores candidatos se van con la competencia.</p>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Recibes cientos de CVs pero la mayoría no cumple los requisitos. El prefiltro manual es lento, repetitivo y te hace perder a los mejores candidatos.</p>
         </motion.div>
 
         <motion.div variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-2 md:grid-cols-4 gap-6">
