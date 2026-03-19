@@ -276,8 +276,8 @@ export const dictionaries = {
     recruit: {
       hero: {
         badge: "Reclutamiento con IA",
-        title1: "Pre-filtra 100 candidatos ",
-        titleHighlight: "en el tiempo que tomas un café",
+        title1: "Pre-filtra candidatos con llamadas IA ",
+        titleHighlight: "y enfócate en quienes realmente califican",
         subtitle: "Tu agente de IA llama a los candidatos, hace las preguntas de pre-filtro, evalúa respuestas y te entrega un ranking listo para entrevistar — sin que levantes el teléfono.",
         cta1: "Prueba una entrevista IA",
         cta2: "Ver cómo funciona",
@@ -665,8 +665,8 @@ export const dictionaries = {
     recruit: {
       hero: {
         badge: "AI-Powered Recruitment",
-        title1: "Screen 100 candidates ",
-        titleHighlight: "in the time it takes to grab a coffee",
+        title1: "Screen candidates with AI calls ",
+        titleHighlight: "and focus on who truly qualifies",
         subtitle: "Your AI agent calls candidates, asks screening questions, evaluates responses, and delivers a ranking ready to interview — without you picking up the phone.",
         cta1: "Try an AI interview",
         cta2: "See how it works",
